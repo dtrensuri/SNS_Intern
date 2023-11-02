@@ -126,7 +126,7 @@
             <div class="nav-bar main-navbar d-flex justify-content-between">
                 <div class="dropdown p-2 nav-item ">
                     <div class="nav-item dropdown-toggle d-flex align-items-center" type="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                        data-bs-toggle="dropdown" aria="false">
                         <h4>株式会社クライアント</h4>
                     </div>
                     <ul class="dropdown-menu">
@@ -139,7 +139,7 @@
                     <div class="nav-item d-flex">
                         <div class="px-2">Avatar</div>
                         <div class="dropdown-toggle d-flex align-items-center" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                            data-bs-toggle="dropdown" aria="false">
 
                             <h5 class="px-2">
                                 @php

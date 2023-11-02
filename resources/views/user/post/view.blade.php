@@ -7,11 +7,12 @@
             </header>
             <div class="select-platform col-2">
                 <div class="platform-box">
-                    <select name="select-platform" id="select-platform" class="p-2 w-100">
+                    <select name="select-platform" id="select-platform" class="p-2 w-100" title="Chọn mạng xã hội">
                         <option value="instagram" selected>Instagram</option>
                         <option value="facebook">Facebook</option>
                         <option value="twitter">Twitter</option>
                     </select>
+
                 </div>
             </div>
             <div class="table-data-post">
