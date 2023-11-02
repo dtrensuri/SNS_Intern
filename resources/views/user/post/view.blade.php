@@ -8,7 +8,7 @@
             <div class="select-platform col-2">
                 <div class="platform-box">
                     <select name="select-platform" id="select-platform" class="p-2 w-100">
-                        <option value="instagram">Instagram</option>
+                        <option value="instagram" selected>Instagram</option>
                         <option value="facebook">Facebook</option>
                         <option value="twitter">Twitter</option>
                     </select>
@@ -26,76 +26,45 @@
                             <th scope="col">コメント</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>2023/10/16</td>
-                            <td>
-                                <ul>
-                                    <li> キャンペーン実施中！! </li>
-                                    <li> キャンペーン実施中！！</li>
-                                    <li> キャンペーン実施中！！</li>
-                                </ul>
-                            </td>
-                            <td>
-                                20,000
-                            </td>
-                            <td>
-                                200
-                            </td>
-                            <td>
-                                100
-                            </td>
-                            <td>
-                                50
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023/10/16</td>
-                            <td>
-                                <ul>
-                                    <li> キャンペーン実施中！! </li>
-                                    <li> キャンペーン実施中！！</li>
-                                    <li> キャンペーン実施中！！</li>
-                                </ul>
-                            </td>
-                            <td>
-                                20,000
-                            </td>
-                            <td>
-                                200
-                            </td>
-                            <td>
-                                100
-                            </td>
-                            <td>
-                                50
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023/10/16</td>
-                            <td>
-                                <ul>
-                                    <li> キャンペーン実施中！! </li>
-                                    <li> キャンペーン実施中！！</li>
-                                    <li> キャンペーン実施中！！</li>
-                                </ul>
-                            </td>
-                            <td>
-                                20,000
-                            </td>
-                            <td>
-                                200
-                            </td>
-                            <td>
-                                100
-                            </td>
-                            <td>
-                                50
-                            </td>
-                        </tr>
+                    <tbody id="table-body">
                     </tbody>
+
                 </table>
+                {{ view('component.loading') }}
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            const selectPlatform = $("#select-platform");
+            const tableBody = $("#table-body");
+            const loadingElement = $("#loading");
+
+            selectPlatform.change(function() {
+                const selectedPlatform = selectPlatform.val();
+                if (!loadingElement.hasClass("loading")) {
+                    loadingElement.addClass("loading");
+                }
+                tableBody.html('');
+
+                if (selectedPlatform === 'facebook') {
+                    $.ajax({
+                        url: 'http://127.0.0.1:8000/fb-post',
+                        method: 'get',
+                        data: {
+                            platform: selectedPlatform
+                        },
+                        success: function(response) {
+                            loadingElement.removeClass('loading');
+                            tableBody.html(response);
+                        },
+                        error: function() {
+                            loadingElement.removeClass('loading');
+                            alert('Error fetching data.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
