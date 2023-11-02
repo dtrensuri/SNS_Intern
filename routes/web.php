@@ -36,4 +36,11 @@ Route::name('user')->middleware('auth')->group(function () {
     Route::get('fb-access', [FacebookController::class, 'OAUth2Client']);
     Route::get('fb-post', [FacebookController::class, 'showListPost']);
     Route::get('autoUpdate', [FacebookController::class, 'autoUpdateFacebookData']);
+
+
+
+    Route::get('fb-login', [FacebookController::class, 'loginFacebook']);
+});
+Route::prefix('callback')->group(function () {
+    Route::get('facebook-login', [FacebookController::class, 'loginCallback'])->name('facebook-login-callback');
 });

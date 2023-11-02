@@ -15,14 +15,15 @@ return new class extends Migration {
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->text('content')->nullable();
-            $table->integer('total_impressions')->nullable();
-            $table->integer('total_engaged')->nullable();
-            $table->integer('total_reactions')->nullable();
-            $table->integer('total_shares')->nullable();
+            $table->integer('total_impressions')->nullable()->default(0);
+            $table->integer('total_engaged')->nullable()->default(0);
+            $table->integer('total_reactions')->nullable()->default(0);
+            $table->integer('total_comment')->nullable()->default(0);
+            $table->integer('total_share')->nullable()->default(0);
             $table->string('post_id')->unique();
-            $table->string('platform'); // Nền tảng xã hội
+            $table->string('platform');
             $table->dateTime('scheduled_time')->nullable();
-            $table->string('status'); // Ví dụ: "Chờ duyệt", "Đã đăng"
+            $table->string('status');
             $table->timestamps();
         });
     }

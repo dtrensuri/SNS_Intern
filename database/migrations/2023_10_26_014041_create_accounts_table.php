@@ -17,11 +17,11 @@ return new class extends Migration {
             $table->string('id_account')->nullable();
             $table->string('name_account')->nullable();
             $table->string('platform');
-            $table->string('access_token')->nullable();
-            $table->string('refresh_token')->nullable();
-            $table->string('consumer_key')->nullable();
-            $table->string('consumer_secret')->nullable();
-            $table->string('bearer_token')->nullable();
+            $table->text('access_token')->nullable();
+            $table->text('secret_token')->nullable();
+            $table->text('consumer_key')->nullable();
+            $table->text('consumer_secret')->nullable();
+            $table->text('bearer_token')->nullable();
             $table->string('status')->nullable();
             $table->dateTime('token_expiration')->nullable();
             $table->timestamps();
