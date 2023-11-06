@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TwitterController2;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,9 @@ Route::name('user')->group(function () {
         Route::get('create', function () {
             return view('user.post.create');
         })->name('.create');
+        Route::post('tweets', [TwitterController2::class, 'postTweet']);
     });
 });
+
+// Route::get('/connecttotwitter', [TwitterController2::class, 'connectToTwitter'])->name('connect_twitter');
+// Route::get('/connecttotwitter/cb', [TwitterController2::class, 'cbToTwitter'])->name('cb_twitter');

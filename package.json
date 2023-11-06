@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "bootstrap-icons": "^1.11.1",
-        "sass": "^1.69.5"
+        "sass": "^1.69.5",
+        "scss": "^0.2.4"
     }
 }

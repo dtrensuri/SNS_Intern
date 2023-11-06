@@ -14,13 +14,13 @@
                             <h3 class="text-center fw-bold mx-3 mb-0">Login</h3>
                         </div>
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="form3Example3">Email</label>
+                            <label class="form-label" for="form3Example3">Email, Username or Phone:</label>
                             <input type="email" id="form3Example3" name="email" class="form-control form-control-lg"
-                                placeholder="Enter a valid email address" />
+                                placeholder="Enter a valid email address, username or phone" />
 
                         </div>
                         <div class="form-outline mb-3">
-                            <label class="form-label" for="form3Example4">Password</label>
+                            <label class="form-label" for="form3Example4">Password:</label>
                             <input type="password" id="form3Example4" name="password" class="form-control form-control-lg"
                                 placeholder="Enter password" />
 

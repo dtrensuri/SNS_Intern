@@ -4,8 +4,122 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa322c53454393ed775cfe4807d54a50",
+    "content-hash": "0518404c95c8e5d78eaadfe8b80e4f96",
     "packages": [
+        {
+            "name": "abraham/twitteroauth",
+            "version": "6.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/abraham/twitteroauth.git",
+                "reference": "e6fc2e0c30371ce68427d547bdeb19725868db30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/abraham/twitteroauth/zipball/e6fc2e0c30371ce68427d547bdeb19725868db30",
+                "reference": "e6fc2e0c30371ce68427d547bdeb19725868db30",
+                "shasum": ""
+            },
+            "require": {
+                "composer/ca-bundle": "^1.2",
+                "ext-curl": "*",
+                "php": "8.*"
+            },
+            "require-dev": {
+                "php-vcr/php-vcr": "^1",
+                "php-vcr/phpunit-testlistener-vcr": "dev-php8",
+                "phpmd/phpmd": "^2",
+                "phpunit/phpunit": "^9",
+                "rector/rector": "^0.15.7",
+                "squizlabs/php_codesniffer": "^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Abraham\\TwitterOAuth\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abraham Williams",
+                    "email": "abraham@abrah.am",
+                    "homepage": "https://abrah.am",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The most popular PHP library for use with the Twitter OAuth REST API.",
+            "homepage": "https://twitteroauth.com",
+            "keywords": [
+                "Twitter API",
+                "Twitter oAuth",
+                "api",
+                "oauth",
+                "rest",
+                "social",
+                "twitter"
+            ],
+            "support": {
+                "issues": "https://github.com/abraham/twitteroauth/issues",
+                "source": "https://github.com/abraham/twitteroauth"
+            },
+            "time": "2023-10-28T20:17:00+00:00"
+        },
+        {
+            "name": "atymic/twitter",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/atymic/twitter.git",
+                "reference": "4f1452a6f4b6c1447dc36b2d21e06bff93558d8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/atymic/twitter/zipball/4f1452a6f4b6c1447dc36b2d21e06bff93558d8b",
+                "reference": "4f1452a6f4b6c1447dc36b2d21e06bff93558d8b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=4.0.0",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Thujohn\\Twitter": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "thujohn",
+                    "email": "jonathan.thuau@gmail.com"
+                }
+            ],
+            "description": "Twitter API for Laravel 4",
+            "keywords": [
+                "laravel",
+                "laravel4",
+                "twitter"
+            ],
+            "support": {
+                "issues": "https://github.com/atymic/twitter/issues",
+                "source": "https://github.com/atymic/twitter/tree/1.1.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/atymic",
+                    "type": "github"
+                }
+            ],
+            "time": "2013-10-12T12:19:05+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.11.0",
@@ -60,6 +174,82 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "composer/ca-bundle",
+            "version": "1.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/ca-bundle.git",
+                "reference": "76e46335014860eec1aa5a724799a00a2e47cc85"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/76e46335014860eec1aa5a724799a00a2e47cc85",
+                "reference": "76e46335014860eec1aa5a724799a00a2e47cc85",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "ext-pcre": "*",
+                "php": "^5.3.2 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.55",
+                "psr/log": "^1.0",
+                "symfony/phpunit-bridge": "^4.2 || ^5",
+                "symfony/process": "^2.5 || ^3.0 || ^4.0 || ^5.0 || ^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\CaBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "Lets you find a path to the system CA bundle, and includes a fallback to the Mozilla CA bundle.",
+            "keywords": [
+                "cabundle",
+                "cacert",
+                "certificate",
+                "ssl",
+                "tls"
+            ],
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/ca-bundle/issues",
+                "source": "https://github.com/composer/ca-bundle/tree/1.3.7"
+            },
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-08-30T09:31:38+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -971,6 +1161,60 @@
             "time": "2023-08-27T10:19:19+00:00"
         },
         {
+            "name": "j7mbo/twitter-api-php",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/J7mbo/twitter-api-php.git",
+                "reference": "443d22c53d621b3cc6b7e0c56daa60c5ada033f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/J7mbo/twitter-api-php/zipball/443d22c53d621b3cc6b7e0c56daa60c5ada033f7",
+                "reference": "443d22c53d621b3cc6b7e0c56daa60c5ada033f7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5,>=4.5.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "TwitterAPIExchange.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU Public License"
+            ],
+            "authors": [
+                {
+                    "name": "James Mallison",
+                    "homepage": "https://github.com/j7mbo/twitter-api-php"
+                }
+            ],
+            "description": "Simple PHP Wrapper for Twitter API v1.1 calls",
+            "homepage": "https://github.com/j7mbo/twitter-api-php",
+            "keywords": [
+                "api",
+                "php",
+                "twitter"
+            ],
+            "support": {
+                "issues": "https://github.com/J7mbo/twitter-api-php/issues",
+                "source": "https://github.com/J7mbo/twitter-api-php/tree/master"
+            },
+            "time": "2017-05-08T12:10:56+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v10.29.0",
             "source": {
@@ -1817,6 +2061,82 @@
                 }
             ],
             "time": "2023-10-17T14:13:20+00:00"
+        },
+        {
+            "name": "league/oauth1-client",
+            "version": "v1.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/oauth1-client.git",
+                "reference": "d6365b901b5c287dd41f143033315e2f777e1167"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/oauth1-client/zipball/d6365b901b5c287dd41f143033315e2f777e1167",
+                "reference": "d6365b901b5c287dd41f143033315e2f777e1167",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "guzzlehttp/psr7": "^1.7|^2.0",
+                "php": ">=7.1||>=8.0"
+            },
+            "require-dev": {
+                "ext-simplexml": "*",
+                "friendsofphp/php-cs-fixer": "^2.17",
+                "mockery/mockery": "^1.3.3",
+                "phpstan/phpstan": "^0.12.42",
+                "phpunit/phpunit": "^7.5||9.5"
+            },
+            "suggest": {
+                "ext-simplexml": "For decoding XML-based responses."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev",
+                    "dev-develop": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\OAuth1\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Corlett",
+                    "email": "bencorlett@me.com",
+                    "homepage": "http://www.webcomm.com.au",
+                    "role": "Developer"
+                }
+            ],
+            "description": "OAuth 1.0 Client Library",
+            "keywords": [
+                "Authentication",
+                "SSO",
+                "authorization",
+                "bitbucket",
+                "identity",
+                "idp",
+                "oauth",
+                "oauth1",
+                "single sign on",
+                "trello",
+                "tumblr",
+                "twitter"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/oauth1-client/issues",
+                "source": "https://github.com/thephpleague/oauth1-client/tree/v1.10.1"
+            },
+            "time": "2022-04-15T14:02:14+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5359,6 +5679,53 @@
             "time": "2023-10-12T18:45:56+00:00"
         },
         {
+            "name": "thujohn/twitter",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/atymic/twitter.git",
+                "reference": "4f1452a6f4b6c1447dc36b2d21e06bff93558d8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/atymic/twitter/zipball/4f1452a6f4b6c1447dc36b2d21e06bff93558d8b",
+                "reference": "4f1452a6f4b6c1447dc36b2d21e06bff93558d8b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=4.0.0",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Thujohn\\Twitter": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "thujohn",
+                    "email": "jonathan.thuau@gmail.com"
+                }
+            ],
+            "description": "Twitter API for Laravel 4",
+            "keywords": [
+                "laravel",
+                "laravel4",
+                "twitter"
+            ],
+            "support": {
+                "issues": "https://github.com/atymic/twitter/issues",
+                "source": "https://github.com/atymic/twitter/tree/1.1.3"
+            },
+            "abandoned": "atymic/twitter",
+            "time": "2013-10-12T12:19:05+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.6",
             "source": {
@@ -5821,16 +6188,16 @@
         },
         {
             "name": "laravel/pint",
-            "version": "v1.13.4",
+            "version": "v1.13.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "428c1eae1be4d2994c88234ffe3fea6800532e0d"
+                "reference": "df105cf8ce7a8f0b8a9425ff45cd281a5448e423"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/428c1eae1be4d2994c88234ffe3fea6800532e0d",
-                "reference": "428c1eae1be4d2994c88234ffe3fea6800532e0d",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/df105cf8ce7a8f0b8a9425ff45cd281a5448e423",
+                "reference": "df105cf8ce7a8f0b8a9425ff45cd281a5448e423",
                 "shasum": ""
             },
             "require": {
@@ -5883,7 +6250,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2023-10-24T15:44:13+00:00"
+            "time": "2023-10-26T09:26:10+00:00"
         },
         {
             "name": "laravel/sail",
@@ -6624,16 +6991,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.4.1",
+            "version": "10.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "62bd7af13d282deeb95650077d28ba3600ca321c"
+                "reference": "cacd8b9dd224efa8eb28beb69004126c7ca1a1a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/62bd7af13d282deeb95650077d28ba3600ca321c",
-                "reference": "62bd7af13d282deeb95650077d28ba3600ca321c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/cacd8b9dd224efa8eb28beb69004126c7ca1a1a1",
+                "reference": "cacd8b9dd224efa8eb28beb69004126c7ca1a1a1",
                 "shasum": ""
             },
             "require": {
@@ -6705,7 +7072,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.4.1"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.4.2"
             },
             "funding": [
                 {
@@ -6721,7 +7088,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-08T05:01:11+00:00"
+            "time": "2023-10-26T07:21:45+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -8077,5 +8444,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
