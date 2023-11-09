@@ -34,6 +34,7 @@ Route::name('user')->group(function () {
             return view('user.post.create');
         })->name('.create');
         Route::post('tweets', [TwitterController2::class, 'postTweet']);
+        Route::get('tweets/delete/{id}', [TwitterController2::class, 'deleteTweet']);
     });
 });
 

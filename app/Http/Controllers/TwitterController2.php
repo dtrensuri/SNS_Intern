@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Abraham\TwitterOAuth\TwitterOAuth;
+use Thujohn\Twitter\Twitter;
 
 class TwitterController2 extends Controller
 {
@@ -69,6 +70,25 @@ class TwitterController2 extends Controller
 
         $result = $connection->post('tweets', $parameters, true);
         
+        dd($result);
+    }
+
+    public function deleteTweet($id)
+    {
+        $consumer_key = env('TWITTER_API_KEY');
+        $consumer_secret = env('TWITTER_API_SECRET');
+        $oauth_token = env('TWITTER_ACCESS_TOKEN');
+        $oauth_token_secret = env('TWITTER_ACCESS_TOKEN_SECRET');
+
+        $connection = new TwitterOAuth($consumer_key, $consumer_secret, $oauth_token, $oauth_token_secret);
+
+        // Delete the tweet
+        $result = $connection->delete("tweets/$id");
+
+    if (!$connection->getLastHttpCode() === 200) {
+        return "Error: " . $result->errors[0]->title;
+        }
+    
         dd($result);
     }
 }

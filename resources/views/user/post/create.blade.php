@@ -15,20 +15,13 @@
                 </div>
             </div>
             <div class="table-data-post">
-                <!-- <label class="form-label" for="form3Example3">Title:</label></br>
-                <input class="w-100" /></br>
-                <label class="form-label mt-3" for="form3Example3">Content:</label></br>
-                <textarea class="w-100" rows="5"></textarea></br>
-                <label class="form-label mt-3" for="form3Example3">Media:</label>
-                <input type="file"></br>
-                <div class="justify-content-center d-flex">
-                    <button class="btn btn-primary mt-3">Create</button>
-                </div> -->
                 <form method="POST" action="/post/tweets" enctype="multipart/form-data">
                     @csrf
-                    <input type="text" name="tweet" placeholder="What's happening?">
-                    <input class="form-control mt-3" type="file" name='media'>
-                    <button type="submit">Tweet</button>
+                    <label class="form-label" for="form3Example3">Content:</label></br>
+                    <textarea type="text" name="tweet" rows="5" class="w-100" placeholder="What do you think?"></textarea>
+                    <label class="form-label mt-3" for="form3Example3">Media:</label>
+                    <input class="form-control" type="file" name='media'>
+                    <button type="submit" class="mt-3">Tweet</button>
                 </form>
             </div>
 
