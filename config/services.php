@@ -38,3 +38,4 @@ return [
         'access_token_secret' => env('TWITTER_ACCESS_TOKEN_SECRET'),
     ],
 ];
+

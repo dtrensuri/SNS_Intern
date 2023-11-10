@@ -1,3 +1,9 @@
+@auth
+    <script>
+        window.location.href = "{{ route('index') }}";
+    </script>
+@endauth
+
 @extends('layouts.none')
 @section('content')
     <section class="vh-100 d-flex">
@@ -14,16 +20,20 @@
                             <h3 class="text-center fw-bold mx-3 mb-0">Login</h3>
                         </div>
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="form3Example3">Email, Username or Phone:</label>
-                            <input type="email" id="form3Example3" name="email" class="form-control form-control-lg"
-                                placeholder="Enter a valid email address, username or phone" />
-
+                            <label class="form-label" for="form3Example3">Email</label>
+                            <input type="email" id="form3Example3" name="email_username"
+                                class="form-control form-control-lg" placeholder="Enter a valid email address" />
+                            @if ($errors->has('email_username'))
+                                <p>{{ $errors->first('email_username') }}</p>
+                            @endif
                         </div>
                         <div class="form-outline mb-3">
                             <label class="form-label" for="form3Example4">Password:</label>
                             <input type="password" id="form3Example4" name="password" class="form-control form-control-lg"
                                 placeholder="Enter password" />
-
+                            @if ($errors->has('password'))
+                                <p>{{ $errors->first('password') }}</p>
+                            @endif
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center">
@@ -35,7 +45,9 @@
                             </div>
                             <a href="#!" class="text-body">Forgot password?</a>
                         </div>
-
+                        @if ($errors->has('login'))
+                            <p>{{ $errors->first('login') }}</p>
+                        @endif
                         <div class="text-center text-lg-end mt-4 pt-2 ">
                             <button type="submit" class="btn btn-primary btn-lg"
                                 style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>

@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\FacebookController;
+
 use App\Http\Controllers\TwitterController2;
 
 /*
@@ -15,28 +19,35 @@ use App\Http\Controllers\TwitterController2;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return redirect(route('user.view'));
+})->name('index');
 
 Route::name('guest')->group(function () {
     Route::get('/login', function () {
         return view('auth.login');
-    });
-    Route::post('/login', function () { })->name('login');
+    })->name('.login_page');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
 });
 
-Route::name('user')->group(function () {
+Route::name('user')->middleware('auth')->group(function () {
     Route::prefix('post')->group(function () {
         Route::get('view', function () {
             return view('user.post.view');
         })->name('.view');
+
         Route::get('create', function () {
             return view('user.post.create');
         })->name('.create');
         Route::post('tweets', [TwitterController2::class, 'postTweet']);
         Route::get('tweets/delete/{id}', [TwitterController2::class, 'deleteTweet']);
     });
-});
+    Route::get('/logout', [AuthController::class, 'logout'])->name('.logout');
 
-// Route::get('/connecttotwitter', [TwitterController2::class, 'connectToTwitter'])->name('connect_twitter');
-// Route::get('/connecttotwitter/cb', [TwitterController2::class, 'cbToTwitter'])->name('cb_twitter');
+    Route::name('.setting')->prefix('setting')->group(function () {
+        Route::get('channel-settings', [SettingController::class, 'createChannelSetting'])->name('.channel');
+    });
+
+    Route::get('fb-access', [FacebookController::class, 'OAUth2Client']);
+    Route::get('fb-post', [FacebookController::class, 'showListPost']);
+    Route::get('autoUpdate', [FacebookController::class, 'autoUpdateFacebookData']);
+});

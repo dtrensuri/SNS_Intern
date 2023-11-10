@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('id_account')->nullable();
+            $table->string('name_account')->nullable();
             $table->string('platform');
             $table->string('access_token')->nullable();
             $table->string('refresh_token')->nullable();
