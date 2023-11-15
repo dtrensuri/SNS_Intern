@@ -4,53 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Abraham\TwitterOAuth\TwitterOAuth;
-use Thujohn\Twitter\Twitter;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Account;
 
 class TwitterController2 extends Controller
 {
-    // public function connectToTwitter(Request $request)
-    // {
-    //     $consumer_key = env('TWITTER_API_KEY');
-    //     $consumer_secret = env('TWITTER_API_SECRET');
 
-    //     $callback = 'http://localhost:8000/connecttotwitter/cb';
+    private $connection;
+    private $id_user;
+    public function __construct()
+    {
+        if (Auth::check()) {
+            $this->id_user = Auth::user()->id;
 
-    //     // Set up TwitterOAuth
-    //     $connection = new TwitterOAuth($consumer_key, $consumer_secret);
-
-    //     $access_token = $connection->oauth('oauth/request_token', ['oauth_callback'=>$callback]);
-
-    //     $route = $connection->url('oauth/authorize', ['oauth_token'=>$access_token['oauth_token']]);
-
-    //     return redirect($route);
-    // }
-
-    // public function cbToTwitter(Request $request)
-    // {
-    //     $response = $request->all();
-
-    //     $consumer_key = env('TWITTER_API_KEY');
-    //     $consumer_secret = env('TWITTER_API_SECRET');
-
-    //     $oauth_token = $response['oauth_token'];
-    //     $oauth_verifirer = $response['oauth_verifier'];
-
-    //     $connection = new TwitterOAuth($consumer_key, $consumer_secret, $oauth_token, $oauth_verifirer);
-
-    //     $token = $connection->oauth('oauth/access_token', ['oauth_verifier'=>$oauth_verifirer]);
-
-    //     $oauth_token = $token['oauth_token'];
-    //     $oauth_token_secret = $token['oauth_token_secret'];
-
-    //     return $this->postTweet($oauth_token, $oauth_token_secret);
-    // }
+            $account = Account::where("user_id", $this->id_user)
+            ->where('platform', 'twitter')->first();
+        } else {
+            // Handle the case where no user is authenticated
+            $this->id_user = null; // or any default value
+        }
+        dd(Auth::check());
+        $this->connection = new TwitterOAuth(
+            $account['consumer_key'],
+            $account['consumer_secret'],
+            $account['access_token'],
+            $account['refresh_token']
+        );
+    }
 
     public function postTweet(Request $request)
     {
-        $consumer_key = env('TWITTER_API_KEY');
-        $consumer_secret = env('TWITTER_API_SECRET');
-        $oauth_token = env('TWITTER_ACCESS_TOKEN');
-        $oauth_token_secret = env('TWITTER_ACCESS_TOKEN_SECRET');
 
         $tweet = $request->input('tweet');
         $hasFile = $request->hasFile('media');
@@ -58,7 +41,7 @@ class TwitterController2 extends Controller
         $file = $request->file('media');
         $filepath = $file->getRealPath();
 
-        $connection = new TwitterOAuth($consumer_key, $consumer_secret, $oauth_token, $oauth_token_secret);
+        $connection = $this->connection;
         $connection->setApiVersion(1.1);
         $media = $connection->upload('media/upload', ['media' => $filepath]);
         $connection->setTimeouts(10, 15);
@@ -75,12 +58,8 @@ class TwitterController2 extends Controller
 
     public function deleteTweet($id)
     {
-        $consumer_key = env('TWITTER_API_KEY');
-        $consumer_secret = env('TWITTER_API_SECRET');
-        $oauth_token = env('TWITTER_ACCESS_TOKEN');
-        $oauth_token_secret = env('TWITTER_ACCESS_TOKEN_SECRET');
-
-        $connection = new TwitterOAuth($consumer_key, $consumer_secret, $oauth_token, $oauth_token_secret);
+    
+        $connection = $this->connection;
 
         // Delete the tweet
         $result = $connection->delete("tweets/$id");

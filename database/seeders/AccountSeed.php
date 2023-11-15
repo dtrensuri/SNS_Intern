@@ -27,15 +27,6 @@ class AccountSeed extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 1,
-                'platform' => 'facebook',
-                'app_id' => '294807996829636',
-                'app_secret' => 'a3b4d3c90c63839ecae759ace75ccff9',
-                'access_token' => 'EAAEMIFXtj8QBO5o3FZCTLheNg0HZATHskCbVf0KZAi8EqlLyH1qJH0HFpLNTYOslCtQJYHsV2fkGn9L2DvrXxZCgwce5Tv1vENZCYE3jscKu95uRIirZCQ3ycqPo9TZBUTQ81bWrb80mOoifcZC42WDcVFoovhClleL0K4H7v8QCouXZAF4nyLA6pkeeaWQ8BHPIHNHhCkXbxelZAZB5654VTSHuuL2KwChLwo2qvVnVtnRU0iqukeZAe4LBkZCrj3w8VKRVl8WPJLaxSrZAYZD',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
                 'user_id' => 2,
                 'platform' => 'twitter',
                 'consumer_key' => 'EaOlEJkloxXtcl0h8jw8j7REn',

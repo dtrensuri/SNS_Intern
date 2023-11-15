@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Image extends Model
 {
@@ -11,7 +12,7 @@ class Image extends Model
         'image_url',
     ];
 
-    public function post()
+    public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class, 'post_id');
     }

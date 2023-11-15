@@ -16,6 +16,7 @@
         "laravel/socialite": "^5.10",
         "laravel/tinker": "^2.8",
         "league/oauth1-client": "^1.10",
+        "noweh/twitter-api-v2-php": "^3.4",
         "symfony/console": "^6.3",
         "thujohn/twitter": "^1.1"
     },
