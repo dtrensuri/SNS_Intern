@@ -29,7 +29,7 @@ Route::name('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 });
 
-Route::name('user')->middleware('auth')->group(function () {
+Route::name('user')->middleware(['auth', 'web'])->group(function () {
     Route::prefix('post')->group(function () {
         Route::get('view', function () {
             return view('user.post.view');

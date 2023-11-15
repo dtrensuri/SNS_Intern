@@ -9,7 +9,7 @@ class Image extends Model
 {
     protected $fillable = [
         'post_id',
-        'image_url',
+        'media_url',
     ];
 
     public function post(): BelongsTo

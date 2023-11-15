@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Account;
+use App\Models\Post;
 
 class TwitterController2 extends Controller
 {
@@ -14,45 +15,69 @@ class TwitterController2 extends Controller
     private $id_user;
     public function __construct()
     {
-        if (Auth::check()) {
-            $this->id_user = Auth::user()->id;
+        // $this->middleware('auth');
+        // $this->id_user = Auth()->user()->id;
 
-            $account = Account::where("user_id", $this->id_user)
-            ->where('platform', 'twitter')->first();
-        } else {
-            // Handle the case where no user is authenticated
-            $this->id_user = null; // or any default value
-        }
-        dd(Auth::check());
+        // $account = Account::where("user_id", $this->id_user)
+        // ->where('platform', 'twitter')->first();
+
+        
+        // $this->connection = new TwitterOAuth(
+        //     $account['consumer_key'],
+        //     $account['consumer_secret'],
+        //     $account['access_token'],
+        //     $account['refresh_token']
+        // );
+
         $this->connection = new TwitterOAuth(
-            $account['consumer_key'],
-            $account['consumer_secret'],
-            $account['access_token'],
-            $account['refresh_token']
+            'EaOlEJkloxXtcl0h8jw8j7REn',
+            'AqkGA1oZIVWpwYY0WpEQHPG1KJKtpse3TawMu3YUQei5rFGcFZ',
+            '1502465858844917762-dwdJMUacdJZzwzqd06ifzCkGmWZR1B',
+            'cg5aoOgnoUfsjb3naeYRPkUF06H6TSzr8qeNfKHe9qp1U'
         );
     }
 
     public function postTweet(Request $request)
     {
+        $newTweet = new Post();
+
+        $newTweet->user_id = Auth::user()->id;
+        // $newTweet->created_at = now();
+        $newTweet->platform = 'twitter';
 
         $tweet = $request->input('tweet');
         $hasFile = $request->hasFile('media');
-        
-        $file = $request->file('media');
-        $filepath = $file->getRealPath();
-
         $connection = $this->connection;
-        $connection->setApiVersion(1.1);
-        $media = $connection->upload('media/upload', ['media' => $filepath]);
-        $connection->setTimeouts(10, 15);
-        $connection->setApiVersion(2);
-        $parameters = [
-            'text' => $tweet,
-            'media' => ['media_ids' => [$media->media_id_string]]
-        ];
-
-        $result = $connection->post('tweets', $parameters, true);
         
+        if ($hasFile) {
+            $file = $request->file('media');
+            $filepath = $file->getRealPath();
+
+            $connection->setApiVersion(1.1);
+            $media = $connection->upload('media/upload', ['media' => $filepath]);
+
+            $parameters = [
+                'text' => $tweet,
+                'media' => ['media_ids' => [$media->media_id_string]]
+            ];
+        } else {
+            $parameters = [
+                'text' => $tweet
+            ];
+        }
+        
+        $connection->setApiVersion(2);
+        $connection->setTimeouts(10, 15);
+        $result = $connection->post('tweets', $parameters, true);
+        if ($result->data->id) {
+            $id_post = $result->data->id;
+            $text = $result->data->text;
+            $newTweet->post_id = $id_post;
+            $newTweet->status = 'OK';
+            $newTweet->content = $text;
+
+            $newTweet->save();
+        }
         dd($result);
     }
 

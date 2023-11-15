@@ -21,10 +21,10 @@
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form3Example3">Email</label>
-                            <input type="email" id="form3Example3" name="email_username"
+                            <input type="email" id="form3Example3" name="email"
                                 class="form-control form-control-lg" placeholder="Enter a valid email address" />
-                            @if ($errors->has('email_username'))
-                                <p>{{ $errors->first('email_username') }}</p>
+                            @if ($errors->has('email'))
+                                <p>{{ $errors->first('email') }}</p>
                             @endif
                         </div>
                         <div class="form-outline mb-3">

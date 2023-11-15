@@ -11,36 +11,23 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    //
-
-    public function attempt($credentials): bool
+    public function login(Request $request)
     {
-        $email_username = $credentials["email_username"];
-        $password = $credentials["password"];
+        $credentials = $request->validate([
+            'email' => ['required', 'email'], 
+            'password' => ['required']
+        ]);
+        if (Auth()->attempt($credentials)) {
+            $email = $credentials["email"];
 
-        $user = User::where('email', $email_username)
-            // ->orWhere('username', $email_username)
-            ->first();
-        if (!$user) {
-            return false;
-        }
-        $check_password = Hash::check($password, $user->password);
-        if (!$check_password) {
-            return false;
-        }
-        Auth::login($user);
-        return true;
-    }
-    public function login(AuthRequest $request)
-    {
-        $credentials = $request->only("email_username", "password");
-        if ($this->attempt($credentials)) {
+            $user = User::where('email', $email)->first();
             $request->session()->regenerate();
+            Auth::login($user);
             return back();
         } else {
             return back()->withErrors([
                 'login' => 'Sai tên đăng nhập hoặc mật khẩu.',
-            ])->withInput(['email_username']);
+            ])->withInput(['email']);
         }
 
     }
