@@ -15,20 +15,6 @@ class TwitterController2 extends Controller
     private $id_user;
     public function __construct()
     {
-        // $this->middleware('auth');
-        // $this->id_user = Auth()->user()->id;
-
-        // $account = Account::where("user_id", $this->id_user)
-        // ->where('platform', 'twitter')->first();
-
-        
-        // $this->connection = new TwitterOAuth(
-        //     $account['consumer_key'],
-        //     $account['consumer_secret'],
-        //     $account['access_token'],
-        //     $account['refresh_token']
-        // );
-
         $this->connection = new TwitterOAuth(
             'EaOlEJkloxXtcl0h8jw8j7REn',
             'AqkGA1oZIVWpwYY0WpEQHPG1KJKtpse3TawMu3YUQei5rFGcFZ',
@@ -92,7 +78,8 @@ class TwitterController2 extends Controller
     if (!$connection->getLastHttpCode() === 200) {
         return "Error: " . $result->errors[0]->title;
         }
-    
+    $tweet = Post::where('post_id', $id);
+    $tweet->delete();
         dd($result);
     }
 }

@@ -1,17 +1,24 @@
 @extends('layouts.user')
 @section('content')
     <div class="main-content">
-        <div class="container p-4">
-            <header class="p-2">
-                <h3 style="font-weight: 600">一覧</h3>
+        <div class="container pt-2">
+            <header class="pb-1">
+                <h4 style="font-weight: 600">一覧</h4>
             </header>
-            <div class="select-platform col-2">
-                <div class="platform-box">
-                    <select name="select-platform" id="select-platform" class="p-2 w-100">
-                        <option value="instagram" selected>Instagram</option>
-                        <option value="facebook">Facebook</option>
-                        <option value="twitter">Twitter</option>
-                    </select>
+            <div class="row d-flex align-items-center justify-content-between">
+                <div class="select-platform col-2">
+                    <div class="platform-box">
+                        <select name="select-platform" id="select-platform" class="p-2 w-100" title="Select platform">
+                        
+                        </select>
+                    </div>
+                </div>
+                <div class="refresh-btn col-1">
+                    <button type="button" class="btn btn-outline-primary" onclick="refreshData()">
+                        <div class="refresh-icon " id = "refresh-icon">
+                            <i class="bi bi-arrow-repeat "></i>
+                        </div>
+                    </button>
                 </div>
             </div>
             <div class="table-data-post">
@@ -27,44 +34,41 @@
                         </tr>
                     </thead>
                     <tbody id="table-body">
+                        
                     </tbody>
-
                 </table>
                 {{ view('component.loading') }}
             </div>
         </div>
     </div>
+@endsection
+
+@push('script')
     <script>
+        const selectPlatform = $("#select-platform");
+        const tableBody = $("#table-body");
+        const loadingElement = $("#loading");
+        const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        function showLoading() {
+            if (!loadingElement.hasClass("loading")) {
+                loadingElement.addClass("loading");
+            }
+        }
+
+        function hideLoading() {
+            loadingElement.removeClass('loading');
+        }
+
         $(document).ready(function() {
-            const selectPlatform = $("#select-platform");
-            const tableBody = $("#table-body");
-            const loadingElement = $("#loading");
 
-            selectPlatform.change(function() {
+            selectPlatform.change(async function() {
                 const selectedPlatform = selectPlatform.val();
-                if (!loadingElement.hasClass("loading")) {
-                    loadingElement.addClass("loading");
-                }
+                showLoading();
                 tableBody.html('');
-
-                if (selectedPlatform === 'facebook') {
-                    $.ajax({
-                        url: 'http://127.0.0.1:8000/fb-post',
-                        method: 'get',
-                        data: {
-                            platform: selectedPlatform
-                        },
-                        success: function(response) {
-                            loadingElement.removeClass('loading');
-                            tableBody.html(response);
-                        },
-                        error: function() {
-                            loadingElement.removeClass('loading');
-                            alert('Error fetching data.');
-                        }
-                    });
-                }
+                fetchUrl(selectedPlatform);
             });
+
         });
     </script>
-@endsection
+@endpush

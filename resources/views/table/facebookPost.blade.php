@@ -2,20 +2,25 @@
     <tr>
         <td>
             @php
-                $time = new \DateTime($postDetail->created_time);
-                echo $time->format('d/m/Y H:i:s');
+                $time = new \DateTime($postDetail->posted_at);
+                echo $time->format('d/m/Y');
             @endphp
         </td>
         <td>
             <div class="content-{{ $postDetail->post_id }} d-flex">
                 @if (isset($postDetail->img))
-                    <img src="{{ $postDetail->img->image_url }}" alt="Image" class="img-fluid" width="120px"
-                        height="100px">
+                    <div class="img"
+                        style="width: 60px;  height: 40px; background-size:cover ; background-image: url('{{ $postDetail->img->image_url }}')">
+                    </div>
                 @endif
 
                 @if (isset($postDetail->content))
                     <p class="ms-2">
                         {!! $postDetail->content !!}
+                        <br>
+                        @isset($postDetail->link)
+                            <a href="{{ $postDetail->link }}">>>View</a>
+                        @endisset
                     </p>
                 @endif
             </div>
@@ -45,7 +50,7 @@
         <td>
             <div class="comment-{{ $postDetail->post_id }}">
                 <p>
-                    {{ $postDetail->total_shares }}
+                    {{ $postDetail->total_comment }}
                 </p>
             </div>
         </td>
