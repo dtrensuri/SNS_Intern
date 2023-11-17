@@ -53,21 +53,21 @@ class TwitterController2 extends Controller
                 'text' => $tweet
             ];
         }
-        
+        $text = $parameters['text'];
         $connection->setApiVersion(2);
         $connection->setTimeouts(10, 15);
         $result = $connection->post('tweets', $parameters, true);
         if ($result->data->id) {
             $id_post = $result->data->id;
-            $text = $result->data->text;
             $newTweet->post_id = $id_post;
+            $newMedia->post_id = $id_post;
             $newTweet->status = 'OK';
             $newTweet->content = $text;
 
             $newTweet->save();
         }
         
-        return view('user.post.create');
+        return redirect()->route('user.view-post');
     }
 
     public function deleteTweet($id)

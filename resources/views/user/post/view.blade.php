@@ -33,6 +33,7 @@
                             <th scope="col">リーチ</th>
                             <th scope="col">いいね</th>
                             <th scope="col">コメント</th>
+                            <th scope="col">Option</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
@@ -45,11 +46,12 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
+                                    <td><button>X</buttons></td>
                                 </tr>
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="2">No data available</td>
+                                <td colspan="7" class="justify-content-center"><p>No data available</p></td>
                             </tr>
                         @endif
                     </tbody>

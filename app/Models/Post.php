@@ -26,8 +26,8 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function image(): HasOne
+    public function media(): HasOne
     {
-        return $this->hasOne(Image::class);
+        return $this->hasOne(Media::class);
     }
 }
