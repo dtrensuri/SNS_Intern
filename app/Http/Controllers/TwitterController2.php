@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Account;
+use App\Models\Media;
 use App\Models\Post;
 
 class TwitterController2 extends Controller
 {
 
     private $connection;
-    private $id_user;
     public function __construct()
     {
         $this->connection = new TwitterOAuth(
@@ -26,6 +27,7 @@ class TwitterController2 extends Controller
     public function postTweet(Request $request)
     {
         $newTweet = new Post();
+        $newMedia = new Media();
 
         $newTweet->user_id = Auth::user()->id;
         // $newTweet->created_at = now();
@@ -64,7 +66,8 @@ class TwitterController2 extends Controller
 
             $newTweet->save();
         }
-        dd($result);
+        
+        return view('user.post.create');
     }
 
     public function deleteTweet($id)
@@ -75,11 +78,18 @@ class TwitterController2 extends Controller
         // Delete the tweet
         $result = $connection->delete("tweets/$id");
 
-    if (!$connection->getLastHttpCode() === 200) {
-        return "Error: " . $result->errors[0]->title;
-        }
-    $tweet = Post::where('post_id', $id);
-    $tweet->delete();
-        dd($result);
+        if (!$connection->getLastHttpCode() === 200) {
+            return "Error: " . $result->errors[0]->title;
+            }
+        $tweet = Post::where('post_id', $id);
+        $tweet->delete();
+        return view('user.post.create');
+    }
+
+    public function viewAllTweet()
+    {
+        $post = DB::table('posts')->where('user_id', Auth::user()->id)->get();
+        return view('user.post.view', ['data' => $post]);
+
     }
 }

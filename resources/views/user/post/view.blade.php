@@ -9,7 +9,9 @@
                 <div class="select-platform col-2">
                     <div class="platform-box">
                         <select name="select-platform" id="select-platform" class="p-2 w-100" title="Select platform">
-                        
+                            <option value="instagram">Instagram</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="twitter">Twitter</option>
                         </select>
                     </div>
                 </div>
@@ -34,7 +36,22 @@
                         </tr>
                     </thead>
                     <tbody id="table-body">
-                        
+                        @if(isset($data) && count($data) > 0)
+                            @foreach($data as $item)
+                                <tr>
+                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->content }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="2">No data available</td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
                 {{ view('component.loading') }}
@@ -49,6 +66,10 @@
         const tableBody = $("#table-body");
         const loadingElement = $("#loading");
         const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        function refreshData() {
+            return view('user.post.view-post');
+        }
 
         function showLoading() {
             if (!loadingElement.hasClass("loading")) {

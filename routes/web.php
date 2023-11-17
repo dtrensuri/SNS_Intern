@@ -40,6 +40,7 @@ Route::name('user')->middleware(['auth', 'web'])->group(function () {
         })->name('.create');
         Route::post('tweets', [TwitterController2::class, 'postTweet']);
         Route::get('tweets/delete/{id}', [TwitterController2::class, 'deleteTweet']);
+        Route::get('tweets/view', [TwitterController2::class, 'viewAllTweet'])->name('.view-post');
     });
     Route::get('/logout', [AuthController::class, 'logout'])->name('.logout');
 
