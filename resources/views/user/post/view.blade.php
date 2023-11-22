@@ -15,13 +15,6 @@
                         </select>
                     </div>
                 </div>
-                <div class="refresh-btn col-1">
-                    <button type="button" class="btn btn-outline-primary" onclick="refreshData()">
-                        <div class="refresh-icon " id = "refresh-icon">
-                            <i class="bi bi-arrow-repeat "></i>
-                        </div>
-                    </button>
-                </div>
             </div>
             <div class="table-data-post">
                 <table id="datatable" class="table table-hover datatable">
@@ -46,7 +39,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td><button class="btn btn-danger" onclick="deletePost($item.post_id)">X</buttons></td>
+                                    <td><button class="btn btn-danger"><a href="/post/tweets/delete/{{ $item->post_id }}" class="text-white">Delete</a></buttons></td>
                                 </tr>
                             @endforeach
                         @else
@@ -64,14 +57,6 @@
 
 @push('script')
     <script>
-        function deletePost(id) {
-            
-        }
-
-        function refreshData() {
-
-        }
-
         function showLoading() {
             if (!loadingElement.hasClass("loading")) {
                 loadingElement.addClass("loading");

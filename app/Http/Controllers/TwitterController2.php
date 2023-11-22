@@ -35,12 +35,12 @@ class TwitterController2 extends Controller
 
         $tweet = $request->input('tweet');
         $hasFile = $request->hasFile('media');
+        $connection = $this->connection;
 
         if ($hasFile) {
             $file = $request->file('media');
             $filepath = $file->getRealPath();
 
-            $connection = $this->connection;
             $connection->setApiVersion(1.1);
             $media = $connection->upload('media/upload', ['media' => $filepath]);
 
@@ -98,7 +98,6 @@ class TwitterController2 extends Controller
     public function viewAllTweet()
     {
         $post = DB::table('posts')->where('user_id', Auth::user()->id)->get();
-        return view('user.post.view', ['data' => $post]);
-
+        return view('user.post.view')->with('data', $post);
     }
 }
