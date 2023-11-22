@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->text('content')->nullable();
+            $table->string('media_url')->nullable();
             $table->integer('total_impressions')->nullable();
             $table->integer('total_engaged')->nullable();
             $table->integer('total_reactions')->nullable();

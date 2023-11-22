@@ -9,7 +9,7 @@
         "abraham/twitteroauth": "^6.2",
         "atymic/twitter": "^1.1",
         "facebook/graph-sdk": "^5.1",
-        "guzzlehttp/guzzle": "^7.2",
+        "guzzlehttp/guzzle": "^7.8",
         "j7mbo/twitter-api-php": "^1.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",

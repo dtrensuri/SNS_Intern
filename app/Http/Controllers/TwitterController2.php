@@ -25,22 +25,22 @@ class TwitterController2 extends Controller
     }
 
     public function postTweet(Request $request)
-    {
-        $newTweet = new Post();
-        $newMedia = new Media();
+{
+    DB::beginTransaction();
 
+    try {
+        $newTweet = new Post();
         $newTweet->user_id = Auth::user()->id;
-        // $newTweet->created_at = now();
         $newTweet->platform = 'twitter';
 
         $tweet = $request->input('tweet');
         $hasFile = $request->hasFile('media');
-        $connection = $this->connection;
-        
+
         if ($hasFile) {
             $file = $request->file('media');
             $filepath = $file->getRealPath();
 
+            $connection = $this->connection;
             $connection->setApiVersion(1.1);
             $media = $connection->upload('media/upload', ['media' => $filepath]);
 
@@ -53,22 +53,31 @@ class TwitterController2 extends Controller
                 'text' => $tweet
             ];
         }
-        $text = $parameters['text'];
+
         $connection->setApiVersion(2);
         $connection->setTimeouts(10, 15);
         $result = $connection->post('tweets', $parameters, true);
-        if ($result->data->id) {
-            $id_post = $result->data->id;
-            $newTweet->post_id = $id_post;
-            $newMedia->post_id = $id_post;
-            $newTweet->status = 'OK';
-            $newTweet->content = $text;
 
+        if ($result && $result->data->id) {
+            $newTweet->post_id = $result->data->id;
+            $newTweet->status = 'OK';
+            $newTweet->content = $parameters['text'];
+
+            if ($hasFile) {
+                $newTweet->media_url = $request->file('media')->store('media', 'public');
+            }
+            
             $newTweet->save();
         }
-        
-        return redirect()->route('user.view-post');
+
+        DB::commit();
+    } catch (\Exception $e) {
+        DB::rollback();
+        throw $e;
     }
+
+    return redirect()->route('user.view-post');
+}
 
     public function deleteTweet($id)
     {
@@ -83,7 +92,7 @@ class TwitterController2 extends Controller
             }
         $tweet = Post::where('post_id', $id);
         $tweet->delete();
-        return view('user.post.create');
+        return redirect()->route('user.view-post');
     }
 
     public function viewAllTweet()

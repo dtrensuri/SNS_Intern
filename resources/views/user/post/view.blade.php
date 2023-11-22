@@ -46,12 +46,12 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td><button>X</buttons></td>
+                                    <td><button class="btn btn-danger" onclick="deletePost($item.post_id)">X</buttons></td>
                                 </tr>
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="7" class="justify-content-center"><p>No data available</p></td>
+                                <td colspan="7"><p>No data available</p></td>
                             </tr>
                         @endif
                     </tbody>
@@ -64,13 +64,12 @@
 
 @push('script')
     <script>
-        const selectPlatform = $("#select-platform");
-        const tableBody = $("#table-body");
-        const loadingElement = $("#loading");
-        const csrfToken = $('meta[name="csrf-token"]').attr('content');
+        function deletePost(id) {
+            
+        }
 
         function refreshData() {
-            return view('user.post.view-post');
+
         }
 
         function showLoading() {
@@ -83,15 +82,5 @@
             loadingElement.removeClass('loading');
         }
 
-        $(document).ready(function() {
-
-            selectPlatform.change(async function() {
-                const selectedPlatform = selectPlatform.val();
-                showLoading();
-                tableBody.html('');
-                fetchUrl(selectedPlatform);
-            });
-
-        });
     </script>
 @endpush

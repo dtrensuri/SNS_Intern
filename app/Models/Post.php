@@ -11,6 +11,7 @@ class Post extends Model
     protected $fillable = [
         'user_id',
         'content',
+        'media_url',
         'total_impressions',
         'total_engaged',
         'total_reactions',
@@ -24,10 +25,5 @@ class Post extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function media(): HasOne
-    {
-        return $this->hasOne(Media::class);
     }
 }

@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('post_id');
-            $table->foreign('post_id')->references('post_id')->on('posts');
+            $table->string('post_id');
+            $table->foreign('post_id')->references('post_id')->on('posts')->onDelete('cascade');
             $table->string('media_url');
             $table->timestamps();
         });
