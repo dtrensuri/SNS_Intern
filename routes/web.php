@@ -6,6 +6,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FacebookController;
 
 use App\Http\Controllers\TwitterController2;
+use App\Http\Controllers\YoutubeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ use App\Http\Controllers\TwitterController2;
 */
 
 Route::get('/', function () {
-    return redirect(route('user.view'));
+    return redirect(route('user.create'));
 })->name('index');
 
 Route::name('guest')->group(function () {
@@ -39,9 +40,14 @@ Route::name('user')->middleware(['auth', 'web'])->group(function () {
             return view('user.post.create');
         })->name('.create');
         Route::post('tweets', [TwitterController2::class, 'postTweet']);
-        Route::get('tweets/delete/{id}', [TwitterController2::class, 'deleteTweet'])->name('.delete-post');
-        Route::get('tweets/view', [TwitterController2::class, 'viewAllTweet'])->name('.view-post');
     });
+    Route::get('tweets/delete/{id}', [TwitterController2::class, 'deleteTweet'])->name('.delete-post');
+    Route::get('tweets/view', [TwitterController2::class, 'viewAllTweet'])->name('.view-post');
+
+    Route::post('insert/media', [YoutubeController::class, 'insertVideo']);
+    Route::get('youtube/connect', [YoutubeController::class, 'connectYoutube'])->name('.cntY');
+    Route::get('public/callback', [YoutubeController::class, 'callbackYoutube']);
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('.logout');
 
     Route::name('.setting')->prefix('setting')->group(function () {

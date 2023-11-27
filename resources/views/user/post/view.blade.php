@@ -39,7 +39,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td><button class="btn btn-danger"><a href="/post/tweets/delete/{{ $item->post_id }}" class="text-white">Delete</a></buttons></td>
+                                    <td><button class="btn btn-danger"><a href="/tweets/delete/{{ $item->post_id }}" class="text-white">Delete</a></buttons></td>
                                 </tr>
                             @endforeach
                         @else

@@ -24,7 +24,15 @@
                     <button type="submit" class="mt-3">Tweet</button>
                 </form>
             </div>
-
+            <div class="table-data-post mt-3">
+                <form method="POST" action="/insert/media" enctype="multipart/form-data">
+                    @csrf
+                    <label class="form-label mt-3" for="form3Example3">Media:</label>
+                    <input class="form-control" type="file" name='video'>
+                    <button type="submit" class="mt-3">Insert Video</button>
+                </form>
+                <button type="submit" class="mt-3"><a href="{{route('user.cntY')}}">Connect to Youtube</a></button>
+            </div>
         </div>
     </div>
 @endsection

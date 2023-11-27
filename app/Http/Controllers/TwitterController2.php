@@ -17,10 +17,10 @@ class TwitterController2 extends Controller
     public function __construct()
     {
         $this->connection = new TwitterOAuth(
-            'EaOlEJkloxXtcl0h8jw8j7REn',
-            'AqkGA1oZIVWpwYY0WpEQHPG1KJKtpse3TawMu3YUQei5rFGcFZ',
-            '1502465858844917762-dwdJMUacdJZzwzqd06ifzCkGmWZR1B',
-            'cg5aoOgnoUfsjb3naeYRPkUF06H6TSzr8qeNfKHe9qp1U'
+            env('TWITTER_API_KEY'),
+            env('TWITTER_API_SECRET'),
+            env('TWITTER_CONSUMER_KEY'),
+            env('TWITTER_CONSUMER_SECRET')
         );
     }
 
