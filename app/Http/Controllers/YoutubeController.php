@@ -48,7 +48,7 @@ class YoutubeController extends Controller
         $account->access_token = $accessToken['access_token'];
         $account->refresh_token = $accessToken['refresh_token'];
         $account->save();
-        return view('index');
+        return redirect()->route('index');
 
     }
 
@@ -99,5 +99,25 @@ class YoutubeController extends Controller
         );
 
         return response()->json(['video_id' => $response->id]);
+    }
+
+    public function deleteVideo($id) {
+        $client = new Google_Client();
+        $client->setApplicationName('My Project 116002');
+        $client->setScopes([
+            'https://www.googleapis.com/auth/youtube.force-ssl',
+        ]);
+        $client->setAuthConfig('C:\Users\VT\Desktop\SNS_Intern\client_secret_395300426177-c6fcep8i3tpvt8jjqqhioq1j5noci9kg.apps.googleusercontent.com.json');
+        $id_user = Auth::user()->id;
+        $account = Account::where('user_id', $id_user)->where('platform', 'youtube')->first();
+        $accessToken = [
+            'access_token' => $account['access_token'],
+            'refresh_token' => $account['refresh_token']
+        ];
+        $client->setAccessToken($accessToken);
+
+        $service = new Google_Service_YouTube($client);
+
+        $service->videos->delete($id);
     }
 }
